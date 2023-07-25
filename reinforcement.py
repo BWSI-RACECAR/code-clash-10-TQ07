@@ -46,6 +46,8 @@ Input: 3, 2 Output: {0: (0, 0, 0), (0, 0, 0): 0, 1: (1, 0, 0), (1, 0, 0): 1, 2: 
 
 from itertools import product
 
+from itertools import product
+
 class Solution:
     def create_action_dict(self, num_players, num_actions):
         #type num: two integer values
@@ -70,6 +72,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
