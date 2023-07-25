@@ -48,17 +48,15 @@ from itertools import product
 
 from itertools import product
 
+from itertools import product
+
 class Solution:
     def create_action_dict(self, num_players, num_actions):
-        #type num: two integer values
-        #return type: int dictionary
-        
-        #TODO: Write code below to return a dictionary with the solution to the prompt.
         actions = list(product(range(num_actions), repeat=num_players))
         action_dict = {}
         for i, action in enumerate(actions):
-            action_dict[i] = action
-            action_dict[action] = i
+            action_dict[i] = tuple(reversed(action))
+            action_dict[tuple(reversed(action))] = i
         return action_dict
     
 def main():
@@ -72,6 +70,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
