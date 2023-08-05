@@ -1,63 +1,19 @@
-"""
-Copyright MIT BWSI Autonomous RACECAR Course
-MIT License
-Summer 2023
-
-Code Clash #10 - Reinforcement (reinforcement.py)
-
-
-Author: Caroline Vincent
-
-Difficulty Level: 8/10
-
-Prompt: You are using a reinforcement learning algorithm to
-play a multi-player game. At each time step, each player has P 
-possible actions that they can take, denoted as 0 through P 
-(Ex: a game where an agent can only move left, right, or stay
-would have three possible actions: 0, 1, and 2). Your neural network 
-receives and outputs a single integer that represents all 
-possible combinations of actions taken by players (2-player Ex: 0=(0,0)).
-
-You want to use a dictionary to map integer keys to tuples 
-of actions, and tuples of actions to integer keys.
-Write a function that takes in the number of players and the number of possible
-actions as parameters and returns the dictionary. Assume that the number of possible
-actions is the same for each player.
-
-Example:
-2 Players with 3 possible actions
-Input: 2, 3
-Output: {0: (0, 0), (0, 0): 0, 1: (1, 0), (1, 0): 1, 2: (2, 0), (2, 0): 2, 3: (0, 1), (0, 1): 3, 4: (1, 1), (1, 1): 4, 5: (2, 1),
-(2, 1): 5, 6: (0, 2), (0, 2): 6, 7: (1, 2), (1, 2): 7, 8: (2, 2), (2, 2): 8}
-'''
-
-Test Cases:
-2 Players with 3 possible actions
-Input: 2, 3
-Output: {0: (0, 0), (0, 0): 0, 1: (1, 0), (1, 0): 1, 2: (2, 0), (2, 0): 2, 3: (0, 1), (0, 1): 3, 4: (1, 1), (1, 1): 4, 5: (2, 1),
-(2, 1): 5, 6: (0, 2), (0, 2): 6, 7: (1, 2), (1, 2): 7, 8: (2, 2), (2, 2): 8}
-
-Input: 2, 2 Output: {0: (0, 0), (0, 0): 0, 1: (1, 0), (1, 0): 1, 2: (0, 1), (0, 1): 2, 3: (1, 1), (1, 1): 3}
-
-Input: 3, 2 Output: {0: (0, 0, 0), (0, 0, 0): 0, 1: (1, 0, 0), (1, 0, 0): 1, 2: (0, 1, 0), (0, 1, 0): 2, 
-3: (1, 1, 0), (1, 1, 0): 3, 4: (0, 0, 1), (0, 0, 1): 4, 5: (1, 0, 1), (1, 0, 1): 5, 6: (0, 1, 1), (0, 1, 1): 6, 7: (1, 1, 1), 
- (1, 1, 1): 7}
-"""
-
-from itertools import product
-
-from itertools import product
-
-from itertools import product
-
 class Solution:
     def create_action_dict(self, num_players, num_actions):
-        actions = list(product(range(num_actions), repeat=num_players))
-        action_dict = {}
-        for i, action in enumerate(actions):
-            action_dict[i] = tuple(reversed(action))
-            action_dict[tuple(reversed(action))] = i
-        return action_dict
+            #type num: two integer values
+            #return type: int dictionary
+            Dict = {}
+            for i in range(num_actions**num_players):
+                #Dict[i] = [ ]
+                li = []
+                for j in range(num_players):
+                    li.append(i // (num_actions**j) %num_actions)
+                Dict[i] = tuple(li)
+                Dict[Dict[i]] = i
+            return Dict
+            
+            #TODO: Write code below to return a dictionary with the solution to the prompt.
+            pass
     
 def main():
     input1 = input()
@@ -70,8 +26,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
